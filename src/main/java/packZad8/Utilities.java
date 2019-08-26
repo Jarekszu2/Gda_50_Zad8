@@ -4,9 +4,10 @@ import packZad8.packResponse.DaneApi;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Utilities {
-    public void printList(List<DaneApi> list) {
+    public void printList(List<Map<String,String>> list) {
         System.out.println();
         System.out.println("Wszystkie posty:");
         System.out.println();
@@ -17,7 +18,7 @@ public class Utilities {
         }
     }
 
-    public void mainWork(List<DaneApi> list) {
+    public void mainWork(List<Map<String,String>> list) {
         ScannerWork scannerWork = new ScannerWork();
         System.out.println();
         System.out.println("Wybierz:\n a) wydruk wszystkich postów" +
@@ -33,7 +34,7 @@ public class Utilities {
                     break;
                 case 'b':
                     int userId = scannerWork.getInt(1, 100);
-                    List<DaneApi> userIdList = getFilteredList(list, userId);
+                    List userIdList = getFilteredList(list, userId);
                     printList(userIdList);
                     break;
                 case 'w':
@@ -43,12 +44,15 @@ public class Utilities {
         } while (!flag);
     }
 
-    public List<DaneApi> getFilteredList(List<DaneApi> list, int userId) {
+    public List<DaneApi> getFilteredList(List<Map<String,String>> list, int userId) {
         List<DaneApi> filtredList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getUserId() == userId) {
-                filtredList.add(list.get(i));
-            }
+            DaneApi daneApi = new DaneApi();
+            daneApi.setUserId((int)Double.parseDouble(list.get(i).get("userId")));
+            daneApi.setBody(list.get(i).get("body"));
+            daneApi.setTitle(list.get(i).get("title"));
+            daneApi.setId(Integer.parseInt(list.get(i).get("id")));
+            filtredList.add(daneApi);
         }
 //        List<DaneApi> filtredList = list.stream()
 //                .filter(daneApi -> daneApi.getUserId() == userId)

@@ -23,7 +23,7 @@ public class Main {
 
         String url = "https://jsonplaceholder.typicode.com/posts";
         JSONwork jsoNwork = new JSONwork();
-        List<DaneApi> list = jsoNwork.loadDataByStream(url);
+        List list = jsoNwork.loadDataByStream(url);
 //        List<DaneApi> list = jsoNwork.loadURLbyString(url);
         utilities.mainWork(list);
 //        utilities.printList(list);
@@ -32,17 +32,17 @@ public class Main {
         // dlaczego poniżej list.forEach(System.out::println) nie działa a w Utilities.printList fori działa dla tej samej listy?
         // działa
         System.out.println();
-        for (int i = 0; i < 10; i++) {
-            System.out.println(list.get(i).getUserId());
-        }
+//        for (int i = 0; i < 10; i++) {
+//            System.out.println(list.get(i).getUserId());
+//        }
 
         // nie działa?
         List<DaneApi> filtredList = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getUserId() == 1) {
-                filtredList.add(list.get(i));
-            }
-        }
+//        for (int i = 0; i < list.size(); i++) {
+//            if (list.get(i).getUserId() == 1) {
+//                filtredList.add(list.get(i));
+//            }
+//        }
 
         System.out.println(filtredList.size());
 
